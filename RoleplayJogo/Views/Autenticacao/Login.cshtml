@@ -1,0 +1,51 @@
+﻿@model RoleplayJogo.Database.Usuario
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Roleplay Jogo - Login";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/login.css">
+</head>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="login-container">
+        <div id="login-janela" class="login-janela">
+            <div id="login-janela-header" class="login-janela-header">
+                Login
+            </div>
+            <div class="login-janela-conteudo">
+                <div class="login-item-container">
+                    <div>
+                        @Html.Label("Usuário")
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(m => m.USU_LOGIN, new { @class = "login-input-jost" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.USU_LOGIN)
+                </div>
+                <div class="login-item-container">
+                    <div>
+                        @Html.Label("Senha")
+                    </div>
+                    <div>
+                        @Html.PasswordFor(m => m.USU_SENHA, new { @class = "login-input-arial" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.USU_SENHA)
+                </div>
+                <div class="login-item-baixo-container">
+                    <button type="submit" class="login-btn-login">Login</button>
+                    @Html.ActionLink("Novo Usuário", "Registrar", null, new { @class = "login-novo-usuario" })
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script src="~/Scripts/login/login.js"></script>
+}

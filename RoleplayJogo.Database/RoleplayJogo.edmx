@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RoleplayJogoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_ATTSKILL">
+          <Key>
+            <PropertyRef Name="ATT_ID" />
+          </Key>
+          <Property Name="ATT_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ATT_SAL_ID" Type="bigint" />
+          <Property Name="ATT_USU_ID" Type="bigint" />
+          <Property Name="ATT_NOME" Type="varchar" MaxLength="50" />
+          <Property Name="ATT_ABREVIACAO" Type="varchar" MaxLength="4" />
+          <Property Name="ATT_DESCRICAO" Type="varchar" MaxLength="280" />
+          <Property Name="ATT_NOTACAO" Type="varchar" MaxLength="30" />
+          <Property Name="ATT_ASC_ID" Type="bigint" />
+          <Property Name="ATT_ATIVO" Type="bit" />
+          <Property Name="ATT_DATA_CRIACAO" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TBL_ATTSKILL_CATEGORIA">
+          <Key>
+            <PropertyRef Name="ASC_ID" />
+          </Key>
+          <Property Name="ASC_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASC_DESCRICAO" Type="varchar" MaxLength="100" />
+          <Property Name="ASC_ATIVO" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_FICHA">
+          <Key>
+            <PropertyRef Name="FIC_ID" />
+          </Key>
+          <Property Name="FIC_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIC_SAL_ID" Type="bigint" />
+          <Property Name="FIC_USU_ID" Type="bigint" />
+          <Property Name="FIC_ATIVO" Type="bit" />
+          <Property Name="FIC_DATA_CRIACAO" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TBL_SALA">
+          <Key>
+            <PropertyRef Name="SAL_ID" />
+          </Key>
+          <Property Name="SAL_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SAL_NOME" Type="varchar" MaxLength="200" />
+          <Property Name="SAL_DESCRICAO" Type="varchar" MaxLength="1000" />
+          <Property Name="SAL_USU_ID" Type="bigint" />
+          <Property Name="SAL_ATIVO" Type="bit" />
+          <Property Name="SAL_DATA_CRIACAO" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TBL_TIPO_USUARIO">
+          <Key>
+            <PropertyRef Name="TPO_ID" />
+          </Key>
+          <Property Name="TPO_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TPO_DESCRICAO" Type="varchar" MaxLength="50" />
+          <Property Name="TPO_ATIVO" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_USUARIO">
+          <Key>
+            <PropertyRef Name="USU_ID" />
+          </Key>
+          <Property Name="USU_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USU_LOGIN" Type="varchar" MaxLength="50" />
+          <Property Name="USU_SENHA" Type="varchar" MaxLength="100" />
+          <Property Name="USU_EMAIL" Type="varchar" MaxLength="320" />
+          <Property Name="USU_NOME" Type="varchar" MaxLength="50" />
+          <Property Name="USU_SOBRENOME" Type="varchar" MaxLength="100" />
+          <Property Name="USU_DATA_NASCIMENTO" Type="date" />
+          <Property Name="USU_VERIFICADO" Type="bit" />
+          <Property Name="USU_ATIVO" Type="bit" />
+          <Property Name="USU_DATA_CRIACAO" Type="datetime" />
+          <Property Name="USU_DATA_VERIFICACAO" Type="datetime" />
+          <Property Name="USU_TPO_ID" Type="bigint" />
+        </EntityType>
+        <Association Name="FK__TBL_ATTSK__ATT_A__3A81B327">
+          <End Role="TBL_ATTSKILL_CATEGORIA" Type="Self.TBL_ATTSKILL_CATEGORIA" Multiplicity="0..1" />
+          <End Role="TBL_ATTSKILL" Type="Self.TBL_ATTSKILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ATTSKILL_CATEGORIA">
+              <PropertyRef Name="ASC_ID" />
+            </Principal>
+            <Dependent Role="TBL_ATTSKILL">
+              <PropertyRef Name="ATT_ASC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_ATTSK__ATT_S__38996AB5">
+          <End Role="TBL_SALA" Type="Self.TBL_SALA" Multiplicity="0..1" />
+          <End Role="TBL_ATTSKILL" Type="Self.TBL_ATTSKILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_SALA">
+              <PropertyRef Name="SAL_ID" />
+            </Principal>
+            <Dependent Role="TBL_ATTSKILL">
+              <PropertyRef Name="ATT_SAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_ATTSK__ATT_U__398D8EEE">
+          <End Role="TBL_USUARIO" Type="Self.TBL_USUARIO" Multiplicity="0..1" />
+          <End Role="TBL_ATTSKILL" Type="Self.TBL_ATTSKILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_USUARIO">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="TBL_ATTSKILL">
+              <PropertyRef Name="ATT_USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_FICHA__FIC_S__412EB0B6">
+          <End Role="TBL_SALA" Type="Self.TBL_SALA" Multiplicity="0..1" />
+          <End Role="TBL_FICHA" Type="Self.TBL_FICHA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_SALA">
+              <PropertyRef Name="SAL_ID" />
+            </Principal>
+            <Dependent Role="TBL_FICHA">
+              <PropertyRef Name="FIC_SAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_FICHA__FIC_U__4222D4EF">
+          <End Role="TBL_USUARIO" Type="Self.TBL_USUARIO" Multiplicity="0..1" />
+          <End Role="TBL_FICHA" Type="Self.TBL_FICHA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_USUARIO">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="TBL_FICHA">
+              <PropertyRef Name="FIC_USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_SALA__SAL_US__267ABA7A">
+          <End Role="TBL_USUARIO" Type="Self.TBL_USUARIO" Multiplicity="0..1" />
+          <End Role="TBL_SALA" Type="Self.TBL_SALA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_USUARIO">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="TBL_SALA">
+              <PropertyRef Name="SAL_USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_USUAR__USU_T__44FF419A">
+          <End Role="TBL_TIPO_USUARIO" Type="Self.TBL_TIPO_USUARIO" Multiplicity="0..1" />
+          <End Role="TBL_USUARIO" Type="Self.TBL_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_TIPO_USUARIO">
+              <PropertyRef Name="TPO_ID" />
+            </Principal>
+            <Dependent Role="TBL_USUARIO">
+              <PropertyRef Name="USU_TPO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RoleplayJogoModelStoreContainer">
+          <EntitySet Name="TBL_ATTSKILL" EntityType="Self.TBL_ATTSKILL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_ATTSKILL_CATEGORIA" EntityType="Self.TBL_ATTSKILL_CATEGORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_FICHA" EntityType="Self.TBL_FICHA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SALA" EntityType="Self.TBL_SALA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_TIPO_USUARIO" EntityType="Self.TBL_TIPO_USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_USUARIO" EntityType="Self.TBL_USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TBL_ATTSK__ATT_A__3A81B327" Association="Self.FK__TBL_ATTSK__ATT_A__3A81B327">
+            <End Role="TBL_ATTSKILL_CATEGORIA" EntitySet="TBL_ATTSKILL_CATEGORIA" />
+            <End Role="TBL_ATTSKILL" EntitySet="TBL_ATTSKILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_ATTSK__ATT_S__38996AB5" Association="Self.FK__TBL_ATTSK__ATT_S__38996AB5">
+            <End Role="TBL_SALA" EntitySet="TBL_SALA" />
+            <End Role="TBL_ATTSKILL" EntitySet="TBL_ATTSKILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_ATTSK__ATT_U__398D8EEE" Association="Self.FK__TBL_ATTSK__ATT_U__398D8EEE">
+            <End Role="TBL_USUARIO" EntitySet="TBL_USUARIO" />
+            <End Role="TBL_ATTSKILL" EntitySet="TBL_ATTSKILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_FICHA__FIC_S__412EB0B6" Association="Self.FK__TBL_FICHA__FIC_S__412EB0B6">
+            <End Role="TBL_SALA" EntitySet="TBL_SALA" />
+            <End Role="TBL_FICHA" EntitySet="TBL_FICHA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_FICHA__FIC_U__4222D4EF" Association="Self.FK__TBL_FICHA__FIC_U__4222D4EF">
+            <End Role="TBL_USUARIO" EntitySet="TBL_USUARIO" />
+            <End Role="TBL_FICHA" EntitySet="TBL_FICHA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_SALA__SAL_US__267ABA7A" Association="Self.FK__TBL_SALA__SAL_US__267ABA7A">
+            <End Role="TBL_USUARIO" EntitySet="TBL_USUARIO" />
+            <End Role="TBL_SALA" EntitySet="TBL_SALA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_USUAR__USU_T__44FF419A" Association="Self.FK__TBL_USUAR__USU_T__44FF419A">
+            <End Role="TBL_TIPO_USUARIO" EntitySet="TBL_TIPO_USUARIO" />
+            <End Role="TBL_USUARIO" EntitySet="TBL_USUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RoleplayJogoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AttSkill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ATT_SAL_ID" Type="Int64" />
+          <Property Name="ATT_USU_ID" Type="Int64" />
+          <Property Name="ATT_NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ATT_ABREVIACAO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ATT_DESCRICAO" Type="String" MaxLength="280" FixedLength="false" Unicode="false" />
+          <Property Name="ATT_NOTACAO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ATT_ATIVO" Type="Boolean" />
+          <Property Name="ATT_DATA_CRIACAO" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK__TBL_ATTSK__ATT_S__29572725" FromRole="TBL_ATTSKILL" ToRole="TBL_SALA" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__TBL_ATTSK__ATT_U__2A4B4B5E" FromRole="TBL_ATTSKILL" ToRole="TBL_USUARIO" />
+          <Property Name="ATT_ASC_ID" Type="Int64" />
+          <NavigationProperty Name="AttSkillCategoria" Relationship="RoleplayJogoModel.FK__TBL_ATTSK__ATT_A__3A81B327" FromRole="TBL_ATTSKILL" ToRole="TBL_ATTSKILL_CATEGORIA" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SAL_NOME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SAL_DESCRICAO" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SAL_USU_ID" Type="Int64" />
+          <Property Name="SAL_ATIVO" Type="Boolean" />
+          <Property Name="SAL_DATA_CRIACAO" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AttsSkill" Relationship="Self.FK__TBL_ATTSK__ATT_S__29572725" FromRole="TBL_SALA" ToRole="TBL_ATTSKILL" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__TBL_SALA__SAL_US__267ABA7A" FromRole="TBL_SALA" ToRole="TBL_USUARIO" />
+          <NavigationProperty Name="Ficha" Relationship="RoleplayJogoModel.FK__TBL_FICHA__FIC_S__412EB0B6" FromRole="TBL_SALA" ToRole="TBL_FICHA" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USU_LOGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USU_SENHA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="USU_EMAIL" Type="String" MaxLength="320" FixedLength="false" Unicode="false" />
+          <Property Name="USU_NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USU_SOBRENOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="USU_DATA_NASCIMENTO" Type="DateTime" Precision="0" />
+          <Property Name="USU_VERIFICADO" Type="Boolean" />
+          <Property Name="USU_ATIVO" Type="Boolean" />
+          <Property Name="USU_DATA_CRIACAO" Type="DateTime" Precision="3" />
+          <Property Name="USU_DATA_VERIFICACAO" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AttSkill" Relationship="Self.FK__TBL_ATTSK__ATT_U__2A4B4B5E" FromRole="TBL_USUARIO" ToRole="TBL_ATTSKILL" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK__TBL_SALA__SAL_US__267ABA7A" FromRole="TBL_USUARIO" ToRole="TBL_SALA" />
+          <NavigationProperty Name="Ficha" Relationship="RoleplayJogoModel.FK__TBL_FICHA__FIC_U__4222D4EF" FromRole="TBL_USUARIO" ToRole="TBL_FICHA" />
+          <Property Name="USU_TPO_ID" Type="Int64" />
+          <NavigationProperty Name="TipoUsuario" Relationship="RoleplayJogoModel.FK__TBL_USUAR__USU_T__44FF419A" FromRole="Usuario" ToRole="TBL_TIPO_USUARIO" />
+        </EntityType>
+        <Association Name="FK__TBL_ATTSK__ATT_S__29572725">
+          <End Role="TBL_SALA" Type="RoleplayJogoModel.Sala" Multiplicity="0..1" />
+          <End Role="TBL_ATTSKILL" Type="RoleplayJogoModel.AttSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_SALA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_ATTSKILL">
+              <PropertyRef Name="ATT_SAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_ATTSK__ATT_U__2A4B4B5E">
+          <End Role="TBL_USUARIO" Type="RoleplayJogoModel.Usuario" Multiplicity="0..1" />
+          <End Role="TBL_ATTSKILL" Type="RoleplayJogoModel.AttSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_ATTSKILL">
+              <PropertyRef Name="ATT_USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_SALA__SAL_US__267ABA7A">
+          <End Role="TBL_USUARIO" Type="RoleplayJogoModel.Usuario" Multiplicity="0..1" />
+          <End Role="TBL_SALA" Type="RoleplayJogoModel.Sala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SALA">
+              <PropertyRef Name="SAL_USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RoleplayJogoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_ATTSKILL" EntityType="RoleplayJogoModel.AttSkill" />
+          <EntitySet Name="TBL_SALA" EntityType="RoleplayJogoModel.Sala" />
+          <EntitySet Name="TBL_USUARIO" EntityType="RoleplayJogoModel.Usuario" />
+          <AssociationSet Name="FK__TBL_ATTSK__ATT_S__29572725" Association="Self.FK__TBL_ATTSK__ATT_S__29572725">
+            <End Role="TBL_SALA" EntitySet="TBL_SALA" />
+            <End Role="TBL_ATTSKILL" EntitySet="TBL_ATTSKILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_ATTSK__ATT_U__2A4B4B5E" Association="Self.FK__TBL_ATTSK__ATT_U__2A4B4B5E">
+            <End Role="TBL_USUARIO" EntitySet="TBL_USUARIO" />
+            <End Role="TBL_ATTSKILL" EntitySet="TBL_ATTSKILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_SALA__SAL_US__267ABA7A" Association="Self.FK__TBL_SALA__SAL_US__267ABA7A">
+            <End Role="TBL_USUARIO" EntitySet="TBL_USUARIO" />
+            <End Role="TBL_SALA" EntitySet="TBL_SALA" />
+          </AssociationSet>
+          <EntitySet Name="TBL_ATTSKILL_CATEGORIA" EntityType="RoleplayJogoModel.AttSkillCategoria" />
+          <AssociationSet Name="FK__TBL_ATTSK__ATT_A__3A81B327" Association="RoleplayJogoModel.FK__TBL_ATTSK__ATT_A__3A81B327">
+            <End Role="TBL_ATTSKILL_CATEGORIA" EntitySet="TBL_ATTSKILL_CATEGORIA" />
+            <End Role="TBL_ATTSKILL" EntitySet="TBL_ATTSKILL" />
+          </AssociationSet>
+          <EntitySet Name="TBL_FICHA" EntityType="RoleplayJogoModel.Ficha" />
+          <AssociationSet Name="FK__TBL_FICHA__FIC_S__412EB0B6" Association="RoleplayJogoModel.FK__TBL_FICHA__FIC_S__412EB0B6">
+            <End Role="TBL_SALA" EntitySet="TBL_SALA" />
+            <End Role="TBL_FICHA" EntitySet="TBL_FICHA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_FICHA__FIC_U__4222D4EF" Association="RoleplayJogoModel.FK__TBL_FICHA__FIC_U__4222D4EF">
+            <End Role="TBL_USUARIO" EntitySet="TBL_USUARIO" />
+            <End Role="TBL_FICHA" EntitySet="TBL_FICHA" />
+          </AssociationSet>
+          <EntitySet Name="TBL_TIPO_USUARIO" EntityType="RoleplayJogoModel.TipoUsuario" />
+          <AssociationSet Name="FK__TBL_USUAR__USU_T__44FF419A" Association="RoleplayJogoModel.FK__TBL_USUAR__USU_T__44FF419A">
+            <End Role="TBL_TIPO_USUARIO" EntitySet="TBL_TIPO_USUARIO" />
+            <End Role="Usuario" EntitySet="TBL_USUARIO" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="AttSkillCategoria">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ASC_DESCRICAO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AttSkill" Relationship="RoleplayJogoModel.FK__TBL_ATTSK__ATT_A__3A81B327" FromRole="TBL_ATTSKILL_CATEGORIA" ToRole="TBL_ATTSKILL" />
+          <Property Name="ASC_ATIVO" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK__TBL_ATTSK__ATT_A__3A81B327">
+          <End Type="RoleplayJogoModel.AttSkillCategoria" Role="TBL_ATTSKILL_CATEGORIA" Multiplicity="0..1" />
+          <End Type="RoleplayJogoModel.AttSkill" Role="TBL_ATTSKILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ATTSKILL_CATEGORIA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_ATTSKILL">
+              <PropertyRef Name="ATT_ASC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ficha">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIC_SAL_ID" Type="Int64" />
+          <Property Name="FIC_USU_ID" Type="Int64" />
+          <Property Name="FIC_ATIVO" Type="Boolean" />
+          <Property Name="FIC_DATA_CRIACAO" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Sala" Relationship="RoleplayJogoModel.FK__TBL_FICHA__FIC_S__412EB0B6" FromRole="TBL_FICHA" ToRole="TBL_SALA" />
+          <NavigationProperty Name="Usuario" Relationship="RoleplayJogoModel.FK__TBL_FICHA__FIC_U__4222D4EF" FromRole="TBL_FICHA" ToRole="TBL_USUARIO" />
+        </EntityType>
+        <Association Name="FK__TBL_FICHA__FIC_S__412EB0B6">
+          <End Type="RoleplayJogoModel.Sala" Role="TBL_SALA" Multiplicity="0..1" />
+          <End Type="RoleplayJogoModel.Ficha" Role="TBL_FICHA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_SALA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_FICHA">
+              <PropertyRef Name="FIC_SAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_FICHA__FIC_U__4222D4EF">
+          <End Type="RoleplayJogoModel.Usuario" Role="TBL_USUARIO" Multiplicity="0..1" />
+          <End Type="RoleplayJogoModel.Ficha" Role="TBL_FICHA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_FICHA">
+              <PropertyRef Name="FIC_USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TPO_DESCRICAO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TPO_ATIVO" Type="Boolean" />
+          <NavigationProperty Name="Usuario" Relationship="RoleplayJogoModel.FK__TBL_USUAR__USU_T__44FF419A" FromRole="TBL_TIPO_USUARIO" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__TBL_USUAR__USU_T__44FF419A">
+          <End Type="RoleplayJogoModel.TipoUsuario" Role="TBL_TIPO_USUARIO" Multiplicity="0..1" />
+          <End Type="RoleplayJogoModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_TIPO_USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="USU_TPO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RoleplayJogoModelStoreContainer" CdmEntityContainer="RoleplayJogoEntities">
+          <EntitySetMapping Name="TBL_ATTSKILL">
+            <EntityTypeMapping TypeName="RoleplayJogoModel.AttSkill">
+              <MappingFragment StoreEntitySet="TBL_ATTSKILL">
+                <ScalarProperty Name="ATT_ASC_ID" ColumnName="ATT_ASC_ID" />
+                <ScalarProperty Name="ID" ColumnName="ATT_ID" />
+                <ScalarProperty Name="ATT_SAL_ID" ColumnName="ATT_SAL_ID" />
+                <ScalarProperty Name="ATT_USU_ID" ColumnName="ATT_USU_ID" />
+                <ScalarProperty Name="ATT_NOME" ColumnName="ATT_NOME" />
+                <ScalarProperty Name="ATT_ABREVIACAO" ColumnName="ATT_ABREVIACAO" />
+                <ScalarProperty Name="ATT_DESCRICAO" ColumnName="ATT_DESCRICAO" />
+                <ScalarProperty Name="ATT_NOTACAO" ColumnName="ATT_NOTACAO" />
+                <ScalarProperty Name="ATT_ATIVO" ColumnName="ATT_ATIVO" />
+                <ScalarProperty Name="ATT_DATA_CRIACAO" ColumnName="ATT_DATA_CRIACAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SALA">
+            <EntityTypeMapping TypeName="RoleplayJogoModel.Sala">
+              <MappingFragment StoreEntitySet="TBL_SALA">
+                <ScalarProperty Name="ID" ColumnName="SAL_ID" />
+                <ScalarProperty Name="SAL_NOME" ColumnName="SAL_NOME" />
+                <ScalarProperty Name="SAL_DESCRICAO" ColumnName="SAL_DESCRICAO" />
+                <ScalarProperty Name="SAL_USU_ID" ColumnName="SAL_USU_ID" />
+                <ScalarProperty Name="SAL_ATIVO" ColumnName="SAL_ATIVO" />
+                <ScalarProperty Name="SAL_DATA_CRIACAO" ColumnName="SAL_DATA_CRIACAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_USUARIO">
+            <EntityTypeMapping TypeName="RoleplayJogoModel.Usuario">
+              <MappingFragment StoreEntitySet="TBL_USUARIO">
+                <ScalarProperty Name="USU_TPO_ID" ColumnName="USU_TPO_ID" />
+                <ScalarProperty Name="ID" ColumnName="USU_ID" />
+                <ScalarProperty Name="USU_LOGIN" ColumnName="USU_LOGIN" />
+                <ScalarProperty Name="USU_SENHA" ColumnName="USU_SENHA" />
+                <ScalarProperty Name="USU_EMAIL" ColumnName="USU_EMAIL" />
+                <ScalarProperty Name="USU_NOME" ColumnName="USU_NOME" />
+                <ScalarProperty Name="USU_SOBRENOME" ColumnName="USU_SOBRENOME" />
+                <ScalarProperty Name="USU_DATA_NASCIMENTO" ColumnName="USU_DATA_NASCIMENTO" />
+                <ScalarProperty Name="USU_VERIFICADO" ColumnName="USU_VERIFICADO" />
+                <ScalarProperty Name="USU_ATIVO" ColumnName="USU_ATIVO" />
+                <ScalarProperty Name="USU_DATA_CRIACAO" ColumnName="USU_DATA_CRIACAO" />
+                <ScalarProperty Name="USU_DATA_VERIFICACAO" ColumnName="USU_DATA_VERIFICACAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ATTSKILL_CATEGORIA">
+            <EntityTypeMapping TypeName="RoleplayJogoModel.AttSkillCategoria">
+              <MappingFragment StoreEntitySet="TBL_ATTSKILL_CATEGORIA">
+                <ScalarProperty Name="ASC_ATIVO" ColumnName="ASC_ATIVO" />
+                <ScalarProperty Name="ASC_DESCRICAO" ColumnName="ASC_DESCRICAO" />
+                <ScalarProperty Name="ID" ColumnName="ASC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_FICHA">
+            <EntityTypeMapping TypeName="RoleplayJogoModel.Ficha">
+              <MappingFragment StoreEntitySet="TBL_FICHA">
+                <ScalarProperty Name="FIC_DATA_CRIACAO" ColumnName="FIC_DATA_CRIACAO" />
+                <ScalarProperty Name="FIC_ATIVO" ColumnName="FIC_ATIVO" />
+                <ScalarProperty Name="FIC_USU_ID" ColumnName="FIC_USU_ID" />
+                <ScalarProperty Name="FIC_SAL_ID" ColumnName="FIC_SAL_ID" />
+                <ScalarProperty Name="ID" ColumnName="FIC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_TIPO_USUARIO">
+            <EntityTypeMapping TypeName="RoleplayJogoModel.TipoUsuario">
+              <MappingFragment StoreEntitySet="TBL_TIPO_USUARIO">
+                <ScalarProperty Name="TPO_ATIVO" ColumnName="TPO_ATIVO" />
+                <ScalarProperty Name="TPO_DESCRICAO" ColumnName="TPO_DESCRICAO" />
+                <ScalarProperty Name="ID" ColumnName="TPO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

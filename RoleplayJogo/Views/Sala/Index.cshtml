@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Roleplay Jogo - Sala";
+}
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="DnD, dangeon and dragons, roleplay, dice, roller, 3D, RPG, wargame" />
+    <meta name="description" content="Online 3D dice roller" />
+
+    <link rel="stylesheet" href="~/Content/main.css">
+    <link rel="stylesheet" href="~/Content/dice.css">
+
+    <link rel="stylesheet" href="~/Content/home.css">
+</head>
+
+<div class="home-container">
+    <div id="home-janela" class="home-janela">
+        <div id="home-janela-header" class="home-janela-header">
+            Início
+        </div>
+        <div class="home-janela-conteudo">
+            <div class="home-item-container">
+                <div>
+                    <button type="button" class="home-btn-criar-nova-sala">Criar nova sala</button>
+                </div>
+            </div>
+            <div class="home-item-container" style="height: 20px; margin-top: 20px;">
+                <div>
+                    <hr class="home-hr">
+                    <div class="home-hr-texto">Ou entrar em sala existente</div>
+                    <hr class="home-hr">
+                </div>
+            </div>
+            <div class="home-item-container">
+                <div>
+                    @Html.Label("Código da sala")
+                </div>
+                <div>
+                    @Html.TextBox("codigo-da-sala", null, new { @id = "codigo-da-sala", @class = "home-input-jost" })
+                </div>
+            </div>
+            <div class="home-item-container">
+                <div>
+                    @Html.Label("Senha")
+                </div>
+                <div>
+                    @Html.TextBox("senha-da-sala", null, new { @id = "senha-da-sala", @class = "home-input-arial" })
+                </div>
+            </div>
+            <div class="home-item-baixo-container">
+                <button type="button" class="home-btn-home" onclick="{ window.location.href = '/Sala?id=1' }">Entrar na sala</button>
+            </div>
+
+        </div>
+    </div>
+    <div id="dice-container">
+        <div id="info_div" style="display: none">
+            <div class="center_field">
+                <span id="label"></span>
+            </div>
+            <div class="center_field">
+                <div class="bottom_field">
+                    <span id="labelhelp">click to continue or tap and drag again</span>
+                </div>
+            </div>
+        </div>
+        <div id="selector_div" style="display: none">
+            <div class="center_field">
+                <div id="sethelp">
+                    choose your dice set by clicking the dices or by direct input of notation,<br />
+                    tap and drag on free space of screen or hit throw button to roll
+                </div>
+            </div>
+            <div class="center_field">
+                <input type="text" id="set" value="4d6"><br />
+                <button id="clear">clear</button>
+                <button style="margin-left: 0.6em" id="throw">throw</button>
+            </div>
+        </div>
+        <div>
+            <div id="canvas"></div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/Scripts/three/three.min.js"></script>
+    <script src="~/Scripts/cannon/cannon.min.js"></script>
+
+    <script>var DiceHub;</script>
+
+    <script type="text/javascript" src="~/Scripts/teal/teal.js"></script>
+    <script type="text/javascript" src="~/Scripts/dice/dice.js"></script>
+    <script type="text/javascript" src="~/Scripts/main/main.js"></script>
+    <script type="text/javascript">
+        //dice_initialize(document.body);
+        dice_initialize(document.getElementById('dice-container'));
+    </script>
+
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/DiceHub/DiceHub.js"></script>
+
+    <script src="~/Scripts/sala/sala.js"></script>
+}

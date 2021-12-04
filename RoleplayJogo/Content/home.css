@@ -1,0 +1,120 @@
+﻿.home-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.home-janela {
+    position:absolute;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+}
+
+.home-janela-header {
+    background: #900808;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #F8F0E9;
+    border-radius: 3px 3px 0 0;
+}
+
+.home-janela-conteudo {
+    border: 1px solid #900808;
+    padding: 20px 20px 20px 20px;
+    border-radius: 0 0 2px 2px;
+    background: #ffefe5;
+}
+
+.home-item-container {
+    margin-bottom: 10px;
+}
+
+.home-item-baixo-container {
+    margin-top: 17px;
+}
+
+.home-input-jost {
+    width: 286px;
+    height: 19px;
+    font-family: 'Jost';
+}
+
+    .home-input-jost:focus {
+        outline: none !important;
+    }
+
+.home-input-arial {
+    width: 286px;
+    height: 19px;
+    font-family: Arial;
+}
+
+    .home-input-arial:focus {
+        outline: none !important;
+    }
+
+.home-btn-home {
+    width: 100%;
+    height: 40px;
+    background: #900808;
+    color: #F8F0E9;
+    border: 1px solid #737373;
+    font-family: 'Jost';
+    cursor: pointer;
+}
+
+    .home-btn-home:hover {
+        background: #B90B0B;
+    }
+
+    .home-btn-home:active {
+        background: #737373;
+    }
+
+    .home-btn-home:focus {
+        outline: none !important;
+    }
+
+.home-btn-criar-nova-sala {
+    width: 100%;
+    height: 40px;
+    background: #900808;
+    color: #F8F0E9;
+    border: 1px solid #737373;
+    font-family: 'Jost';
+    cursor: pointer;
+}
+
+    .home-btn-criar-nova-sala:hover {
+        background: #B90B0B;
+    }
+
+    .home-btn-criar-nova-sala:active {
+        background: #737373;
+    }
+
+    .home-btn-criar-nova-sala:focus {
+        outline: none !important;
+    }
+
+.home-hr-texto {
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: -4px;
+    color: #900808;
+}
+
+.home-hr {
+    float: left;
+    width: 50px;
+    background-color: #900808;
+    height: 1px;
+    border: none;
+}

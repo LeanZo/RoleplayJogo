@@ -1,0 +1,3 @@
+﻿$(function () {
+    dragElement('home-janela');
+});

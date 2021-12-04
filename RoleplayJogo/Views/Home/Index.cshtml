@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Roleplay Jogo - Início";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/home.css">
+</head>
+
+<div class="home-container">
+    <div id="home-janela" class="home-janela">
+        <div id="home-janela-header" class="home-janela-header">
+            Início
+        </div>
+        <div class="home-janela-conteudo">
+            <div class="home-item-container">
+                <div>
+                    <button type="button" class="home-btn-criar-nova-sala">Criar nova sala</button>
+                </div>
+            </div>
+            <div class="home-item-container" style="height: 20px; margin-top: 20px;">
+                <div>
+                    <hr class="home-hr">
+                    <div class="home-hr-texto">Ou entrar em sala existente</div>
+                    <hr class="home-hr">
+                </div>
+            </div>
+            <div class="home-item-container">
+                <div>
+                    @Html.Label("Código da sala")
+                </div>
+                <div>
+                    @Html.TextBox("codigo-da-sala", null, new { @id = "codigo-da-sala", @class = "home-input-jost" })
+                </div>
+            </div>
+            <div class="home-item-container">
+                <div>
+                    @Html.Label("Senha")
+                </div>
+                <div>
+                    @Html.TextBox("senha-da-sala", null, new { @id = "senha-da-sala", @class = "home-input-arial" })
+                </div>
+            </div>
+            <div class="home-item-baixo-container">
+                <button type="button" class="home-btn-home" onclick="{ window.location.href = '/Sala?id=1' }">Entrar na sala</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/home/home.js"></script>
+}
