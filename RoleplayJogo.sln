@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleplayJogo", "RoleplayJogo\RoleplayJogo.csproj", "{1393DEEE-31F3-4E8C-991F-1F4E608EDBF0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleplayJogo.Database", "RoleplayJogo.Database\RoleplayJogo.Database.csproj", "{B70C71E2-9950-444A-AEB7-FCB6E59469D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleplayJogo.Site", "RoleplayJogo.Site\RoleplayJogo.Site.csproj", "{699A54C6-3ADD-4980-8CDA-B30A978D5BA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B70C71E2-9950-444A-AEB7-FCB6E59469D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B70C71E2-9950-444A-AEB7-FCB6E59469D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B70C71E2-9950-444A-AEB7-FCB6E59469D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{699A54C6-3ADD-4980-8CDA-B30A978D5BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{699A54C6-3ADD-4980-8CDA-B30A978D5BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{699A54C6-3ADD-4980-8CDA-B30A978D5BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{699A54C6-3ADD-4980-8CDA-B30A978D5BA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
